@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, Redirect } from "react-router-dom";
+import Login from './components/Login';
+import AppStepper from './components/AppStepper';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { userSelector } from './reducers/user';
 
-function App() {
+
+function App (props) {
+  const {isAuthorized} = props.user;
+  console.log(props.user);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route path='/start' component={isAuthorized ? AppStepper : Login} />
+      <Redirect from='/' exact to='/start' />
+      <Route render={() => <h1>Path not found!</h1>} />
+    </Switch>
   );
 }
 
-export default App;
+App.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  user: userSelector(state),
+});
+
+export default connect(mapStateToProps, null)(App);
+
