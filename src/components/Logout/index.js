@@ -1,24 +1,30 @@
 import React from 'react';
-import ConfigurableButton from '../Buttons/ConfigurableButton'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { logout } from '../../reducers/user'
 import { connect } from 'react-redux';
+import { dispatchLogout } from '../../store/reducers/user';
+import AppButton from '../AppButton/AppButton';
+import ROUTES from '../../constants/routes';
 
 
-function Logout({logout}) {
+function Logout({ logout }) {
   const handleClick = () => {
     logout();
-  }
+  };
   return (
-    <Link to='/start' onClick={handleClick}>
-      <ConfigurableButton buttonText='Logout' style={{
-        position: 'absolute',
-        top: '0px',
-        right: '0px',
-      }} />
+    <Link to={ROUTES.AUTHENTICATION_ROUTE} onClick={handleClick}>
+      <AppButton
+        style={{
+          position: 'absolute',
+          top: '0px',
+          right: '0px',
+        }}
+        onClick={handleClick}
+      >
+          Logout
+      </AppButton>
     </Link>
-  )
+  );
 }
 
 Logout.propTypes = {
@@ -26,7 +32,7 @@ Logout.propTypes = {
 };
 
 const mapDispatchToProps = ({
-  logout: logout,
+  logout: dispatchLogout,
 });
 
 export default connect(null, mapDispatchToProps)(Logout);

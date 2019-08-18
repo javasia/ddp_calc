@@ -1,31 +1,29 @@
 import React from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
-import Login from './components/Login';
-import AppStepper from './components/AppStepper';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { userSelector } from './reducers/user';
+import Login from './components/Login';
+import AppStepper from './components/AppStepper/AppStepper';
+import { userAuthSelector } from './store/reducers/user';
+import ROUTES from './constants/routes';
 
+const mapStateToProps = state => ({
+  isAuthorized: userAuthSelector(state),
+});
 
-function App (props) {
-  const {isAuthorized} = props.user;
-  console.log(props.user);
+function App(props) {
+  const { isAuthorized } = props;
   return (
     <Switch>
-      <Route path='/start' component={isAuthorized ? AppStepper : Login} />
-      <Redirect from='/' exact to='/start' />
+      <Route path={ROUTES.AUTHENTICATION_ROUTE} component={isAuthorized ? AppStepper : Login} />
+      <Redirect from={ROUTES.HOME_ROUTE} exact to={ROUTES.AUTHENTICATION_ROUTE} />
       <Route render={() => <h1>Path not found!</h1>} />
     </Switch>
   );
 }
 
 App.propTypes = {
-  user: PropTypes.object.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
-  user: userSelector(state),
-});
-
 export default connect(mapStateToProps, null)(App);
-

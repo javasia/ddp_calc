@@ -1,26 +1,32 @@
 import { handleActions, createAction } from 'redux-actions';
-import {defUser} from '../Mock';
+import { createSelector } from 'reselect';
+import { defUser } from '../../mock';
 
-//TYPES
+
+// TYPES
 export const SET_USER_DATA = 'USER/SET_USER_DATA';
 export const LOGOUT = 'USER/LOGOUT';
 
 export const REDUCER_NAME = 'user';
 
-//ACTION CREATORS
+// ACTION CREATORS
 export const setUserData = createAction(SET_USER_DATA);
-export const logout = createAction(LOGOUT);
+export const dispatchLogout = createAction(LOGOUT);
 
 const initialState = { isAuthorized: false };
 
 export default handleActions({
-  [setUserData]: (state, {payload: {email, password}}) => ({
+  [setUserData]: (state, { payload: { email, password } }) => ({
     ...state,
     email,
-    password, 
+    password,
     isAuthorized: defUser.email === email && defUser.password === password,
   }),
-  [logout]: () => initialState,
+  [dispatchLogout]: () => initialState,
 }, initialState);
 
-export const userSelector = state => state[REDUCER_NAME];
+const userReducer = state => state[REDUCER_NAME];
+export const userAuthSelector = createSelector(
+  userReducer,
+  user => user.isAuthorized,
+);

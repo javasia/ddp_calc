@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function foo() {
+export default function ChooseTemplate() {
   return (
-    <h1>Under construction</h1>
+    <h1>ChooseTemplate is under construction</h1>
   );
 }
