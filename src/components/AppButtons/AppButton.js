@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { withStylesPropTypes } from 'react-with-styles';
+import clsx from 'clsx';
+
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -12,9 +14,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function AppButton(props) {
   const classes = useStyles();
-  const { children: buttonValue, style: customStyle } = props;
+  const { children: buttonValue, style, className } = props;
   return (
-    <Button variant="contained" color="primary" style={customStyle} className={classes.button}>
+    <Button variant="contained" color="primary" style={style} className={clsx(classes.root, className)}>
       {buttonValue}
     </Button>
   );
@@ -22,6 +24,7 @@ export default function AppButton(props) {
 
 AppButton.defaultProps = {
   style: {},
+  className: '',
 };
 
 AppButton.propTypes = {
@@ -30,4 +33,5 @@ AppButton.propTypes = {
     PropTypes.node,
   ]).isRequired,
   style: withStylesPropTypes.styles,
+  className: PropTypes.string,
 };
