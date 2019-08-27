@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import AppButton from '../AppButton/AppButton';
+import AppButton from '../AppButtons/AppButton';
 import { setUserData } from '../../store/reducers/user';
 import ROUTES from '../../constants/routes';
 
@@ -18,23 +18,21 @@ const mapStateToProps = state => ({
 
 const useStyles = makeStyles(theme => ({
   container: {
-    display: 'flex',
     position: 'absolute',
     top: '50%',
     left: '50%',
-    padding: '20px 30px 40px',
-    transform: 'translate(-50%, -50%)',
-    width: '350px',
+    display: 'flex',
     flexDirection: 'column',
+    padding: '20px 30px 40px',
+    boxSizing: 'border-box',
+    width: '350px',
     backgroundColor: '#ccffff',
     borderRadius: '3px',
     boxShadow: '3px 3px #cccccc',
-    boxSizing: 'border-box',
+    transform: 'translate(-50%, -50%)',
   },
   textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    marginTop: '10px',
+    marginBottom: '5px',
     backgroundColor: 'white',
   },
 }));
@@ -69,7 +67,6 @@ function Login(props) {
         className={classes.textField}
         type="email"
         autoComplete="email"
-        margin="normal"
         variant="outlined"
         onChange={handleChange}
       />
@@ -80,7 +77,6 @@ function Login(props) {
         className={classes.textField}
         type="password"
         autoComplete="current-password"
-        margin="normal"
         variant="outlined"
         onChange={handleChange}
       />
