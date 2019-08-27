@@ -1,7 +1,3 @@
-import React from 'react';
+import ChooseActionView from './view/ChooseActionView';
 
-export default function ChooseAction() {
-  return (
-    <h1>Choose action is under construction</h1>
-  );
-}
+export default ChooseActionView;

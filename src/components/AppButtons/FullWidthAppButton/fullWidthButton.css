@@ -1,0 +1,12 @@
+.full-width-button {
+  width: 100%;
+  align-content: left;
+}
+
+.full-width-button > span{
+  justify-content: left;
+}
+
+.full-width-button::after {
+  content: " >";
+}

@@ -13,7 +13,8 @@ export const REDUCER_NAME = 'user';
 export const setUserData = createAction(SET_USER_DATA);
 export const dispatchLogout = createAction(LOGOUT);
 
-const initialState = { isAuthorized: false };
+const initialState = { isAuthorized: true }; // just a temporary mock
+// const initialState = { isAuthorized: false };
 
 export default handleActions({
   [setUserData]: (state, { payload: { email, password } }) => ({
