@@ -6,7 +6,6 @@ import { dispatchLogout } from '../../store/reducers/user';
 import AppButton from '../AppButtons/AppButton';
 import ROUTES from '../../constants/routes';
 
-
 function Logout({ logout }) {
   const handleClick = () => {
     logout();
