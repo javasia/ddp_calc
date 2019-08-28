@@ -6,6 +6,8 @@ import Login from './components/Login/Login';
 import AppStepper from './components/AppStepper/AppStepper';
 import { userAuthSelector } from './store/reducers/user';
 import ROUTES from './constants/routes';
+import './components/style.css';
+
 
 const mapStateToProps = state => ({
   isAuthorized: userAuthSelector(state),

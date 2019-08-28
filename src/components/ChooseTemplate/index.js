@@ -1,7 +1,3 @@
-import React from 'react';
+import ChooseTemplateView from './view/ChooseTemplateView';
 
-export default function ChooseTemplate() {
-  return (
-    <h1>ChooseTemplate is under construction</h1>
-  );
-}
+export default ChooseTemplateView;
