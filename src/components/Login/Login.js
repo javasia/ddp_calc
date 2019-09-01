@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   container: {
     position: 'absolute',
     top: '50%',

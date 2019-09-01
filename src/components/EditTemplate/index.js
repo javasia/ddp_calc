@@ -1,7 +1,3 @@
-import React from 'react';
+import EditTemplateView from './view/EditTemplateView';
 
-export default function EditTemplate() {
-  return (
-    <h1>EditTemplate is under construction</h1>
-  );
-}
+export default EditTemplateView;
