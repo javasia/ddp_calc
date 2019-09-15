@@ -11,6 +11,8 @@ function LabeledTextInput(props) {
     label,
     placeholder,
     style,
+    value,
+    disabled,
   } = props;
   return (
     <div style={{ marginTop: '15px', marginBottom: '10px', ...style }}>
@@ -19,6 +21,8 @@ function LabeledTextInput(props) {
         placeholder={placeholder}
         handleChange={handleChange}
         style={{ margin: 0 }}
+        value={value}
+        disabled={disabled}
       />
     </div>
   );
@@ -27,6 +31,8 @@ function LabeledTextInput(props) {
 LabeledTextInput.defaultProps = {
   placeholder: '',
   style: {},
+  value: '',
+  disabled: true,
 };
 
 LabeledTextInput.propTypes = {
@@ -34,6 +40,8 @@ LabeledTextInput.propTypes = {
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   style: withStylesPropTypes.styles,
+  value: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default LabeledTextInput;

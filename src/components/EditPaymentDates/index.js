@@ -1,7 +1,3 @@
-import React from 'react';
+import EditPaymentDatesView from './view/EditPaymentDatesView';
 
-export default function EditPaymentDetails() {
-  return (
-    <h1>EditPaymentDetails is under construction</h1>
-  );
-}
+export default EditPaymentDatesView;

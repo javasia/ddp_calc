@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import TextLabel from '../../AppInputs/TextLabel';
 import BareTextInput from '../../AppInputs/BareTextInput';
 import SimpleSelect from '../../AppInputs/SimpleSelect';
+import CRITERIA from '../../../constants/criteriaOfDistribution';
 
 function ExpensesDistributionMethodLine(props) {
   const {
     style,
     disabled,
-    criteriaOfDistribution,
+    defaultValue,
     isHeader,
     placeholder,
   } = props;
@@ -27,9 +28,10 @@ function ExpensesDistributionMethodLine(props) {
       <Grid item xs={6}>
         {isHeader ? <TextLabel label="Distribute by" /> : null}
         <SimpleSelect
-          criteriaOfDistribution={criteriaOfDistribution}
+          value={defaultValue}
           style={{ width: '100%', ...style }}
           disabled={disabled}
+          menuItems={CRITERIA}
         />
       </Grid>
     </>
@@ -44,7 +46,7 @@ ExpensesDistributionMethodLine.defaultProps = {
 
 ExpensesDistributionMethodLine.propTypes = {
   placeholder: PropTypes.string.isRequired,
-  criteriaOfDistribution: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string.isRequired,
   style: withStylesPropTypes.styles,
   disabled: PropTypes.bool,
   isHeader: PropTypes.bool,

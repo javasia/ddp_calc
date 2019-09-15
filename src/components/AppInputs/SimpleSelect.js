@@ -4,7 +4,6 @@ import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { withStylesPropTypes } from 'react-with-styles';
-import { CRITERIA_OF_DISTRIBUTION, VERBOSE_CRITERIA_DESCRIPTION } from '../../constants/criteriaOfDistribution';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,14 +28,15 @@ export default function SimpleSelect(props) {
 
   const {
     style,
-    criteriaOfDistribution,
+    value,
     name,
     disabled,
+    menuItems,
   } = props;
   return (
     <div>
       <Select
-        value={criteriaOfDistribution}
+        value={value}
         onChange={handleChange}
         displayEmpty
         name={name}
@@ -44,11 +44,8 @@ export default function SimpleSelect(props) {
         style={style}
         disabled={disabled}
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        {Object.keys(CRITERIA_OF_DISTRIBUTION).map(criteria => (
-          <MenuItem value={criteria}>{VERBOSE_CRITERIA_DESCRIPTION[criteria]}</MenuItem>
+        {Object.values(menuItems).map(item => (
+          <MenuItem value={item.name}>{item.description}</MenuItem>
         ))}
       </Select>
     </div>
@@ -61,8 +58,9 @@ SimpleSelect.defaultProps = {
 
 SimpleSelect.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  criteriaOfDistribution: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   style: withStylesPropTypes.styles,
+  menuItems: PropTypes.objectOf(PropTypes.string).isRequired,
 };

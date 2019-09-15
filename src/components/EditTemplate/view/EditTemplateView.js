@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import LabeledTextInput from '../../AppInputs/LabeledTextInput';
 import ExpensesDistributionMethodLine from './ExpensesDistributionMethodLine';
-import { CRITERIA_OF_DISTRIBUTION } from '../../../constants/criteriaOfDistribution';
+import CRITERIA from '../../../constants/criteriaOfDistribution';
 import DEFAULT_STATES_OF_EXPENSES from '../../../constants/defaultStatesOfExpenses';
 import AddButton from '../../AppButtons/AddButton';
 
@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 function EditTemplateView() {
   const classes = useStyles();
+  const { cost: { name: cost }, volume: { name: volume }, weight: { name: weight } } = CRITERIA;
   return (
     <div className="frame-holder">
       <h1 className="frame-header">Edit template:</h1>
@@ -28,27 +29,27 @@ function EditTemplateView() {
         <Grid container spacing={3}>
           <ExpensesDistributionMethodLine
             placeholder={DEFAULT_STATES_OF_EXPENSES.INVOICE_COST}
-            criteriaOfDistribution={CRITERIA_OF_DISTRIBUTION.cost}
+            defaultValue={cost}
             disabled
             isHeader
           />
           <ExpensesDistributionMethodLine
             placeholder={DEFAULT_STATES_OF_EXPENSES.TRANSPORTATION}
-            criteriaOfDistribution={CRITERIA_OF_DISTRIBUTION.volume}
+            defaultValue={volume}
             disabled
           />
           <ExpensesDistributionMethodLine
             placeholder={DEFAULT_STATES_OF_EXPENSES.CUSTOMS_DUTY}
-            criteriaOfDistribution={CRITERIA_OF_DISTRIBUTION.cost}
+            defaultValue={weight}
             disabled
           />
           <ExpensesDistributionMethodLine
             placeholder={DEFAULT_STATES_OF_EXPENSES.LOADING_UNLOADING}
-            criteriaOfDistribution={CRITERIA_OF_DISTRIBUTION.weight}
+            defaultValue={weight}
             disabled
           />
         </Grid>
-        <AddButton alignment="right" handleClick={null} />
+        <AddButton style={{ textAlign: 'right' }} handleClick={null} />
       </div>
     </div>
   );
