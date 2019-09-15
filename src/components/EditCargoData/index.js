@@ -1,7 +1,3 @@
-import React from 'react';
+import EditCargoView from './view/EditCargoDataView';
 
-export default function EditCargoData() {
-  return (
-    <h1>EditCargoData is under construction</h1>
-  );
-}
+export default EditCargoView;

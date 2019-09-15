@@ -2,9 +2,9 @@ import React from 'react';
 import { withStylesPropTypes } from 'react-with-styles';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
-import TextLabel from '../../AppTextInputs/TextLabel';
-import BareTextInput from '../../AppTextInputs/BareTextInput';
-import SimpleSelect from '../../AppTextInputs/SimpleSelect';
+import TextLabel from '../../AppInputs/TextLabel';
+import BareTextInput from '../../AppInputs/BareTextInput';
+import SimpleSelect from '../../AppInputs/SimpleSelect';
 
 function ExpensesDistributionMethodLine(props) {
   const {

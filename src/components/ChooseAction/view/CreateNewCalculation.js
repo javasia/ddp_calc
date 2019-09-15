@@ -1,5 +1,5 @@
 import React from 'react';
-import BareTextInput from '../../AppTextInputs/BareTextInput';
+import BareTextInput from '../../AppInputs/BareTextInput';
 import AppButton from '../../AppButtons/AppButton';
 
 function CreateNewCalculation() {

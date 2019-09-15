@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import LabeledTextInput from '../../AppTextInputs/LabeledTextInput';
+import LabeledTextInput from '../../AppInputs/LabeledTextInput';
 import ExpensesDistributionMethodLine from './ExpensesDistributionMethodLine';
 import { CRITERIA_OF_DISTRIBUTION } from '../../../constants/criteriaOfDistribution';
 import DEFAULT_STATES_OF_EXPENSES from '../../../constants/defaultStatesOfExpenses';
