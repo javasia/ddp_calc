@@ -1,61 +1,33 @@
 import React from 'react';
-import Stepper from '@material-ui/core/Stepper';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
-import Button from '@material-ui/core/Button';
+import Stepper from '@material-ui/core/Stepper';
 import Typography from '@material-ui/core/Typography';
-import ChooseAction from '../ChooseAction';
-import ChooseTemplate from '../ChooseTemplate';
-import EditCargoData from '../EditCargoData';
-import EditPaymentDates from '../EditPaymentDates';
-import EditTemplate from '../EditTemplate';
-import Logout from '../Logout';
+import { Link as RouterLink, Route, Switch } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
+import STEPS from '../../constants/steps';
+import Logout from '../../pages/Logout';
 import useStyles from './style';
 
-const steps = [
-  {
-    label: 'Choose action',
-    message: 'Step 1: what are we going to do?',
-    component: <ChooseAction />,
-  },
-  {
-    label: 'Choose template',
-    message: 'Step 2: Choose a template or create a new one...',
-    component: <ChooseTemplate />,
-  },
-  {
-    label: 'View/edit template',
-    message: 'Step 3: Edit template or click submit...',
-    component: <EditTemplate />,
-  },
-  {
-    label: 'Fill in the cargo data',
-    message: 'Step 4: Please fill in cargo data...',
-    component: <EditCargoData />,
-  },
-  {
-    label: 'Payment dates by expenses',
-    message: 'Step 5: Please fill in payment dates and amounts...',
-    component: <EditPaymentDates />,
-  },
-];
-
 function getStepsContent(step) {
-  return steps[step]
-  || {
-    label: 'Unknown',
-    message: 'Unknown step',
-    component: null,
-  };
+  return STEPS[step]
+    || {
+      label: 'Unknown',
+      message: 'Unknown step',
+      component: null,
+      path: '',
+    };
 }
 
-export default function AppStepper() {
+export default function AppStepper({ match }) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
 
   function getTotalStepsLength() {
-    return steps.length;
+    return STEPS.length;
   }
 
   function completedSteps() {
@@ -74,7 +46,7 @@ export default function AppStepper() {
   // find the first step that has been completed
   function handleNextStep() {
     if (isLastStep() && !allStepsCompleted()) {
-      setActiveStep(steps.findIndex((step, i) => !(i in completed)));
+      setActiveStep(STEPS.findIndex((step, i) => !(i in completed)));
     } else {
       setActiveStep(activeStep + 1);
     }
@@ -100,23 +72,35 @@ export default function AppStepper() {
     setCompleted({});
   }
 
-  const { component, message } = getStepsContent(activeStep);
+  const { message } = getStepsContent(activeStep);
+
   return (
     <div className={classes.root}>
       <Logout />
       <Stepper nonLinear activeStep={activeStep}>
-        {steps.map(({ label }, stepNumber) => (
+        {STEPS.map(({ label, path }, stepNumber) => (
           <Step key={label} data-step_number={stepNumber}>
-            <StepButton
-              completed={completed[stepNumber]}
-              onClick={() => handleStepperClick(stepNumber)}
-            >
-              {label}
-            </StepButton>
+            <Link component={StepButton} to="/">
+              <RouterLink to={`${match.path}/${path}`}>
+                <StepButton
+                  completed={completed[stepNumber]}
+                  onClick={() => handleStepperClick(stepNumber)}
+                >
+                  {label}
+                </StepButton>
+              </RouterLink>
+            </Link>
           </Step>
         ))}
       </Stepper>
-      {component}
+
+      <Switch>
+        {STEPS.map(step => (
+          <Route path={`${match.path}/${step.path}`} component={step.component} />
+        ))}
+        <Route path={`${match.path}`} component={STEPS[0].component} />
+      </Switch>
+
       <div style={{
         position: 'fixed',
         bottom: '15px',
@@ -137,29 +121,33 @@ export default function AppStepper() {
               {message}
             </Typography>
             <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNextStep}
-                className={classes.button}
-              >
-                Next
-              </Button>
-              {activeStep !== steps.length
+              <Link component={RouterLink} to={`${match.path}/${STEPS[activeStep > 0 ? activeStep - 1 : 0].path}`}>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  className={classes.button}
+                >
+                  Back
+                </Button>
+              </Link>
+              <Link component={RouterLink} to={`${match.path}/${STEPS[isLastStep() ? 0 : activeStep + 1].path}`}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleNextStep}
+                  className={classes.button}
+                >
+                  Next
+                </Button>
+              </Link>
+              {activeStep !== STEPS.length
                 && (completed[activeStep] ? (
                   <Typography variant="caption" className={classes.completed}>
                     Step
                     {' '}
                     {activeStep + 1}
                     {' '}
-already completed
+                    already completed
                   </Typography>
                 ) : (
                   <Button
@@ -179,3 +167,11 @@ already completed
     </div>
   );
 }
+
+AppStepper.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      path: PropTypes.node,
+    }).isRequired,
+  }).isRequired,
+};

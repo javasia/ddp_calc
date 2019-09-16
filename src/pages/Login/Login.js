@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import AppButton from '../AppButtons/AppButton';
+import AppButton from '../../components/AppButtons/AppButton';
 import { setUserData } from '../../store/reducers/user';
 import ROUTES from '../../constants/routes';
 

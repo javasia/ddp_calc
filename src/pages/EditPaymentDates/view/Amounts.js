@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStylesPropTypes } from 'react-with-styles';
-import LabeledTextInput from '../../AppInputs/LabeledTextInput';
+import LabeledTextInput from '../../../components/AppInputs/LabeledTextInput';
 
 
 export default function ExpensesAmountDateLine(props) {

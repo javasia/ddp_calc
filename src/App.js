@@ -2,12 +2,11 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Login from './components/Login/Login';
+import Login from './pages/Login/Login';
 import AppStepper from './components/AppStepper/AppStepper';
 import { userAuthSelector } from './store/reducers/user';
 import ROUTES from './constants/routes';
 import './components/style.css';
-
 
 const mapStateToProps = state => ({
   isAuthorized: userAuthSelector(state),

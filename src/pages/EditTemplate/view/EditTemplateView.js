@@ -1,11 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import LabeledTextInput from '../../AppInputs/LabeledTextInput';
+import LabeledTextInput from '../../../components/AppInputs/LabeledTextInput';
 import ExpensesDistributionMethodLine from './ExpensesDistributionMethodLine';
 import CRITERIA from '../../../constants/criteriaOfDistribution';
 import DEFAULT_STATES_OF_EXPENSES from '../../../constants/defaultStatesOfExpenses';
-import AddButton from '../../AppButtons/AddButton';
+import AddButton from '../../../components/AppButtons/AddButton';
 
 const useStyles = makeStyles(theme => ({
   root: {
