@@ -1,6 +1,6 @@
 import React from 'react';
-import BareTextInput from '../../AppInputs/BareTextInput';
-import AppButton from '../../AppButtons/AppButton';
+import BareTextInput from '../../../components/AppInputs/BareTextInput';
+import AppButton from '../../../components/AppButtons/AppButton';
 
 function CreateNewCalculation() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import FullWidthAppButton from '../../AppButtons/FullWidthAppButton/FullWidthAppButton';
-import AppButton from '../../AppButtons/AppButton';
+import FullWidthAppButton from '../../../components/AppButtons/FullWidthAppButton/FullWidthAppButton';
+import AppButton from '../../../components/AppButtons/AppButton';
 
 function ChooseTemplateView() {
   return (

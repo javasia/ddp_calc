@@ -1,8 +1,8 @@
 import React from 'react';
-import BareTextInput from '../../AppInputs/BareTextInput';
-import DateInput from '../../AppInputs/DateInput';
-import AddButton from '../../AppButtons/AddButton';
-import DeleteButton from '../../AppButtons/DeleteButton';
+import BareTextInput from '../../../components/AppInputs/BareTextInput';
+import DateInput from '../../../components/AppInputs/DateInput';
+import AddButton from '../../../components/AppButtons/AddButton';
+import DeleteButton from '../../../components/AppButtons/DeleteButton';
 
 export default function ExpensesAmountDateLine() {
   return (

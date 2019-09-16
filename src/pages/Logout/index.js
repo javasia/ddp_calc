@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { dispatchLogout } from '../../store/reducers/user';
-import AppButton from '../AppButtons/AppButton';
+import AppButton from '../../components/AppButtons/AppButton';
 import ROUTES from '../../constants/routes';
 
 function Logout({ logout }) {
