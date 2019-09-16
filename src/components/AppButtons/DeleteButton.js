@@ -17,7 +17,11 @@ export default function FloatingActionButtons() {
 
   return (
     <div>
-      <Fab disabled aria-label="delete" className={classes.fab}>
+      <Fab
+        aria-label="delete"
+        className={classes.fab}
+        size="small"
+      >
         <DeleteIcon />
       </Fab>
     </div>
