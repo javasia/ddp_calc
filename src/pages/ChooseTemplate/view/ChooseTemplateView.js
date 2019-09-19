@@ -16,11 +16,10 @@ function ChooseTemplateView() {
       <div style={{
         display: 'flex',
         marginTop: '50px',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
       }}
       >
         <AppButton>Create new</AppButton>
-        <AppButton>Skip and use default</AppButton>
       </div>
     </div>
   );
