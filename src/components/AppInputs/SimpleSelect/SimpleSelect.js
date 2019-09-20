@@ -1,23 +1,9 @@
 import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { withStylesPropTypes } from 'react-with-styles';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+import useStyles from './style';
 
 export default function SimpleSelect(props) {
   const classes = useStyles();
@@ -45,7 +31,7 @@ export default function SimpleSelect(props) {
         disabled={disabled}
       >
         {Object.values(menuItems).map(item => (
-          <MenuItem value={item.name}>{item.description}</MenuItem>
+          <MenuItem key={item.name} value={item.name}>{item.description}</MenuItem>
         ))}
       </Select>
     </div>

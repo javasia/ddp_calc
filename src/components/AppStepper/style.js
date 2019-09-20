@@ -7,12 +7,15 @@ const useStyles = makeStyles(theme => ({
   button: {
     marginRight: theme.spacing(1),
   },
-  completed: {
-    display: 'inline-block',
-  },
   instructions: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+  },
+  footer: {
+    position: 'fixed',
+    bottom: '15px',
+    left: '50%',
+    transform: 'translateX(-50%)',
   },
 }));
 

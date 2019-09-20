@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SimpleSelect from '../../../components/AppInputs/SimpleSelect';
+import SimpleSelect from '../../../components/AppInputs/SimpleSelect/SimpleSelect';
 import CURRENCIES from '../../../constants/currencies';
 import ExpensesAmountDateLine from './ExpensesAmountDateLine';
 import Amounts from './Amounts';
