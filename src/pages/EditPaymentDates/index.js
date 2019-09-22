@@ -1,3 +1,3 @@
-import EditPaymentDatesView from './view/EditPaymentDatesView';
+import EditPaymentDatesView from './EditPaymentDatesView';
 
 export default EditPaymentDatesView;

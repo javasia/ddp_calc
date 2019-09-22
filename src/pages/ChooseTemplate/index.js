@@ -1,3 +1,3 @@
-import ChooseTemplateView from './view/ChooseTemplateView';
+import ChooseTemplateView from './ChooseTemplateView';
 
 export default ChooseTemplateView;

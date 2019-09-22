@@ -2,10 +2,10 @@ import React from 'react';
 import { withStylesPropTypes } from 'react-with-styles';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
-import TextLabel from '../../../components/AppInputs/TextLabel';
-import BareTextInput from '../../../components/AppInputs/BareTextInput';
-import SimpleSelect from '../../../components/AppInputs/SimpleSelect/SimpleSelect';
-import CRITERIA from '../../../constants/criteriaOfDistribution';
+import TextLabel from '../../components/AppInputs/TextLabel';
+import BareTextInput from '../../components/AppInputs/BareTextInput';
+import SimpleSelect from '../../components/AppInputs/SimpleSelect/SimpleSelect';
+import CRITERIA from '../../constants/criteriaOfDistribution';
 
 function ExpensesDistributionMethodLine(props) {
   const {

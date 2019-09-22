@@ -8,12 +8,12 @@ export default function BareTextInput(props) {
     handleChange,
     placeholder,
     style,
-    id,
     disabled,
+    required,
+    value,
   } = props;
   return (
     <TextField
-      id={id}
       placeholder={placeholder}
       margin="normal"
       variant="outlined"
@@ -21,14 +21,17 @@ export default function BareTextInput(props) {
       inputProps={{ 'aria-label': 'bare' }}
       onChange={handleChange}
       disabled={disabled}
+      required={required}
+      value={value}
     />
   );
 }
 
 BareTextInput.defaultProps = {
   style: {},
-  id: '',
   disabled: false,
+  required: false,
+  value: '',
 };
 
 
@@ -36,6 +39,7 @@ BareTextInput.propTypes = {
   handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   style: withStylesPropTypes.styles,
-  id: withStylesPropTypes.string,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
+  value: PropTypes.string,
 };

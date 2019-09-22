@@ -3,11 +3,11 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PropTypes from 'prop-types';
-import TextLabel from '../../../components/AppInputs/TextLabel';
-import FileUpload from '../../../components/AppInputs/FileUpload';
-import BareTextInput from '../../../components/AppInputs/BareTextInput';
+import TextLabel from '../../components/AppInputs/TextLabel';
+import FileUpload from '../../components/AppInputs/FileUpload';
+import BareTextInput from '../../components/AppInputs/BareTextInput';
 import DownloadPreview from './DownloadPreview';
-import { downloadTemplatePreview } from '../../../constants/imageData';
+import { downloadTemplatePreview } from '../../constants/imageData';
 
 export default function EditCargoData(props) {
   const [value, setValue] = React.useState('');

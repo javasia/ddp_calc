@@ -24,7 +24,7 @@ export const STEPS = [
     optional: true,
   },
   {
-    label: 'View/edit template',
+    label: 'Choose/edit template',
     message: 'Step 3: Edit template or click submit...',
     path: STEPPER_ROUTES.EDIT_TEMPLATE,
     component: pages.EditTemplate,
