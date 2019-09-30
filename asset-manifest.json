@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ddp_calc/static/css/main.4d9148aa.chunk.css",
-    "main.js": "/ddp_calc/static/js/main.6d547fca.chunk.js",
-    "main.js.map": "/ddp_calc/static/js/main.6d547fca.chunk.js.map",
+    "main.css": "/ddp_calc/static/css/main.cab04fa0.chunk.css",
+    "main.js": "/ddp_calc/static/js/main.48348eb2.chunk.js",
+    "main.js.map": "/ddp_calc/static/js/main.48348eb2.chunk.js.map",
     "runtime~main.js": "/ddp_calc/static/js/runtime~main.0f4a5af2.js",
     "runtime~main.js.map": "/ddp_calc/static/js/runtime~main.0f4a5af2.js.map",
-    "static/js/2.5159bef0.chunk.js": "/ddp_calc/static/js/2.5159bef0.chunk.js",
-    "static/js/2.5159bef0.chunk.js.map": "/ddp_calc/static/js/2.5159bef0.chunk.js.map",
+    "static/js/2.879e4ec5.chunk.js": "/ddp_calc/static/js/2.879e4ec5.chunk.js",
+    "static/js/2.879e4ec5.chunk.js.map": "/ddp_calc/static/js/2.879e4ec5.chunk.js.map",
     "index.html": "/ddp_calc/index.html",
-    "precache-manifest.56ad8bdde8b7345f41d6a803a257cb74.js": "/ddp_calc/precache-manifest.56ad8bdde8b7345f41d6a803a257cb74.js",
+    "precache-manifest.fd54fb207dbb3e99f935542186cdda5a.js": "/ddp_calc/precache-manifest.fd54fb207dbb3e99f935542186cdda5a.js",
     "service-worker.js": "/ddp_calc/service-worker.js",
-    "static/css/main.4d9148aa.chunk.css.map": "/ddp_calc/static/css/main.4d9148aa.chunk.css.map"
+    "static/css/main.cab04fa0.chunk.css.map": "/ddp_calc/static/css/main.cab04fa0.chunk.css.map"
   }
 }
