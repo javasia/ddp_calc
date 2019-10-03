@@ -8,12 +8,13 @@ export default function BareTextInput(props) {
     handleChange,
     placeholder,
     style,
-    id,
     disabled,
+    required,
+    value,
+    type,
   } = props;
   return (
     <TextField
-      id={id}
       placeholder={placeholder}
       margin="normal"
       variant="outlined"
@@ -21,21 +22,30 @@ export default function BareTextInput(props) {
       inputProps={{ 'aria-label': 'bare' }}
       onChange={handleChange}
       disabled={disabled}
+      required={required}
+      value={value}
+      type={type}
     />
   );
 }
 
 BareTextInput.defaultProps = {
+  placeholder: '',
   style: {},
-  id: '',
   disabled: false,
+  required: false,
+  type: '',
+  // eslint-disable-next-line no-console
+  handleChange: () => console.error('No change handler provided'),
 };
 
 
 BareTextInput.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  handleChange: PropTypes.func,
+  placeholder: PropTypes.string,
   style: withStylesPropTypes.styles,
-  id: withStylesPropTypes.string,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };

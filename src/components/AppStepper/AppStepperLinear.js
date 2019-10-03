@@ -5,17 +5,12 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
-import { STEPS as steps, RESULT } from '../../constants/steps';
-import Button from '../AppButtons/ButtonMUIWithRouter';
+import { STEPS as steps } from '../../constants/steps';
+import ROUTES from '../../constants/routes';
 import useStyles from './style';
-
 
 function getStepsLabels() {
   return steps.map(step => step.label);
-}
-
-function getStepContent(stepNumber) {
-  return steps[stepNumber].message;
 }
 
 function HorizontalLinearStepper(props) {
@@ -24,74 +19,91 @@ function HorizontalLinearStepper(props) {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const stepsLabels = getStepsLabels();
-
-  const getStepPath = useCallback((stepNumber = activeStep) => `${match.path}/${steps[stepNumber].path}`, [activeStep, match.path]);
-
   const RESET_PATH = `${match.path}/${steps[0].path}`;
-  const RESULT_PATH = `${match.path}/${RESULT.path}`;
+  const resultPath = `${ROUTES.HOME_ROUTE}${ROUTES.DDP_CALCULATION_RESULT}`;
   const { location: { pathname: locationPathname } } = window;
 
+  const getStepPath = useCallback((stepNumber = (activeStep || 0)) => (
+    match && match.path && steps && steps[stepNumber] && steps[stepNumber].path
+      ? `${match.path}/${steps[stepNumber].path}`
+      : RESET_PATH
+  ), [RESET_PATH, activeStep, match]);
+
   useEffect(() => {
-    const isResultPath = () => locationPathname === RESULT_PATH;
+    const isResultPath = () => locationPathname === resultPath;
     const isPathnameMatchStep = () => locationPathname === getStepPath();
     if (!isResultPath() && !isPathnameMatchStep()) {
       history.push(RESET_PATH);
       setActiveStep(() => 0);
     }
-  }, [locationPathname, RESET_PATH, RESULT_PATH, getStepPath, history]);
+  }, [locationPathname, RESET_PATH, resultPath, getStepPath, history]);
 
-  function isLastStep(stepNumber) {
-    return stepNumber === steps.length - 1;
-  }
+  const isLastStep = useCallback(
+    (stepNumber = activeStep) => stepNumber === steps.length - 1,
+    [activeStep],
+  );
 
-  function isStepOptional(stepNumber) {
-    return !!steps[stepNumber].optional;
-  }
+  const isStepOptional = useCallback(
+    (stepNumber = activeStep) => !!steps[stepNumber].optional,
+    [activeStep],
+  );
 
-  function isStepSkipped(stepNumber) {
-    return skipped.has(stepNumber);
-  }
+  const isStepSkipped = useCallback(
+    () => skipped.has(activeStep),
+    [activeStep, skipped],
+  );
 
-  function getNextUrl() {
-    return isLastStep(activeStep) ? RESULT_PATH : getStepPath(activeStep + 1);
-  }
+  const getNextUrl = useCallback(
+    () => (isLastStep(activeStep) ? resultPath : getStepPath(activeStep + 1)),
+    [resultPath, activeStep, getStepPath, isLastStep],
+  );
 
-  function getBackUrl() {
-    return steps[activeStep - 1].path;
-  }
-  function handleNext() {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
+  const getBackUrl = useCallback(
+    () => steps[activeStep - 1].path,
+    [activeStep],
+  );
 
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  }
+  const handleNext = useCallback(
+    () => {
+      let newSkipped = skipped;
+      if (isStepSkipped(activeStep)) {
+        newSkipped = new Set(newSkipped.values());
+        newSkipped.delete(activeStep);
+      }
 
-  function handleBack() {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  }
+      setActiveStep(prevActiveStep => prevActiveStep + 1);
+      setSkipped(newSkipped);
 
-  function handleSkip() {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
+      history.push(getNextUrl());
+    },
+    [activeStep, getNextUrl, history, isStepSkipped, skipped],
+  );
 
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  }
+  const handleBack = useCallback(
+    () => {
+      setActiveStep(prevActiveStep => prevActiveStep - 1);
+      history.push(getBackUrl());
+    },
+    [getBackUrl, history],
+  );
 
-  function handleReset() {
-    setActiveStep(0);
-  }
+  const handleSkip = useCallback(
+    () => {
+      if (!isStepOptional(activeStep)) {
+        throw new Error("You can't skip a step that isn't optional.");
+      }
+
+      setActiveStep(prevActiveStep => prevActiveStep + 1);
+      setSkipped((prevSkipped) => {
+        const newSkipped = new Set(prevSkipped.values());
+        newSkipped.add(activeStep);
+        return newSkipped;
+      });
+
+      history.push(getNextUrl());
+    },
+    [activeStep, getNextUrl, history, isStepOptional],
+  );
 
   return (
     <div className={classes.root}>
@@ -114,62 +126,29 @@ function HorizontalLinearStepper(props) {
       </Stepper>
 
       <Switch>
-        {steps.map(step => (
-          <Route key={step.path} path={`${match.path}/${step.path}`} component={step.component} />
+        {steps.map(({ path, component: StepPage }) => (
+          <Route
+            key={path}
+            path={`${match.path}/${path}`}
+            // eslint-disable-next-line no-shadow
+            render={props => (
+              <StepPage
+                {...props}
+                footerProps={{
+                  handleBack,
+                  handleNext,
+                  handleSkip,
+                  stepContent: steps[activeStep].message,
+                  isStepOptional: isStepOptional(),
+                  isLastStep: isLastStep(),
+                  isBackButtonDisabled: activeStep === 0,
+                }}
+              />
+            )}
+          />
         ))}
-        <Route key={RESULT_PATH} path={RESULT_PATH} component={RESULT.component} />
         <Route key={RESET_PATH} exact path={RESET_PATH} component={steps[0].component} />
       </Switch>
-
-      <div className={classes.footer}>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button} url={RESET_PATH}>
-              Reset
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div>
-              {activeStep === 0 || (
-                <Button
-                  onClick={handleBack}
-                  className={classes.button}
-                  url={getBackUrl()}
-                >
-                  Back
-                </Button>
-              )}
-              {
-                isStepOptional(activeStep) && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSkip}
-                  className={classes.button}
-                  url={getNextUrl()}
-                >
-                  Skip
-                </Button>
-                )
-              }
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-                url={getNextUrl()}
-              >
-                {isLastStep(activeStep) ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
     </div>
   );
 }

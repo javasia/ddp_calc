@@ -48,5 +48,5 @@ SimpleSelect.propTypes = {
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   style: withStylesPropTypes.styles,
-  menuItems: PropTypes.objectOf(PropTypes.string).isRequired,
+  menuItems: PropTypes.objectOf(PropTypes.objectOf(PropTypes.string)).isRequired,
 };

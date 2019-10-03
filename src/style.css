@@ -13,10 +13,17 @@ li {
 .frame-header {
   margin: 0 10px 5px;
   font-size: 2em;
-  color: gray;
+  font-family: sans-serif;
 }
 
 h2.frame-header {
   margin: 1em 0 0 1em;
   font-size: 1.5em;
+}
+
+span.error {
+  margin-top: 0px;
+  color: red;
+  font-size: .8em;
+  background-color: rgba(245, 0, 87, 0.08);
 }

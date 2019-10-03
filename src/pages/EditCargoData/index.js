@@ -1,3 +1,3 @@
-import EditCargoView from './view/EditCargoDataView';
+import EditCargoView from './EditCargoDataView';
 
 export default EditCargoView;

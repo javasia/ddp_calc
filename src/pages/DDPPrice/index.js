@@ -1,7 +1,3 @@
-import React from 'react';
+import DDPPriceView from './DDPPriceView';
 
-export default function DDPPrice() {
-  return (
-    <h1>DDPPrice is under construction</h1>
-  );
-}
+export default DDPPriceView;

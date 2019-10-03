@@ -12,10 +12,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1),
   },
   footer: {
-    position: 'fixed',
-    bottom: '15px',
-    left: '50%',
-    transform: 'translateX(-50%)',
+    marginTop: '20px',
+    textAlign: 'center',
   },
 }));
 

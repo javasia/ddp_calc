@@ -1,3 +1,3 @@
-import ChooseActionView from './view/ChooseActionView';
+import ChooseActionView from './ChooseActionView';
 
 export default ChooseActionView;
