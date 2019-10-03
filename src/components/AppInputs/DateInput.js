@@ -18,7 +18,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function DateInput(props) {
   const classes = useStyles();
-  const { label, style, handleChange } = props;
+  const {
+    label, style, handleChange, date,
+  } = props;
 
   return (
     <form className={classes.container} noValidate>
@@ -31,6 +33,7 @@ export default function DateInput(props) {
           shrink: true,
         }}
         style={style}
+        defaultValue={date}
         onChange={handleChange}
       />
     </form>
@@ -40,10 +43,12 @@ export default function DateInput(props) {
 DateInput.defaultProps = {
   style: {},
   label: '',
+  date: '',
 };
 
 DateInput.propTypes = {
   label: PropTypes.string,
   style: withStylesPropTypes.styles,
   handleChange: PropTypes.func.isRequired,
+  date: PropTypes.string,
 };
