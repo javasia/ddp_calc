@@ -1,5 +1,5 @@
 import React from 'react';
-import FullWidthAppButton from '../../../components/AppButtons/FullWidthAppButton/FullWidthAppButton';
+import FullWidthAppButton from '../../components/AppButtons/FullWidthAppButton/FullWidthAppButton';
 
 
 function CheckPersistedCalculations() {

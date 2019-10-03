@@ -1,7 +1,9 @@
-import user from './user';
+import data from './data';
+import statesOfExpenses from './statesOfExpenses';
 
 const reducers = {
-  user,
+  data,
+  statesOfExpenses,
 };
 
 export default reducers;
