@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
+import AppStepperLinear from './components/AppStepper/AppStepperLinear';
+import ROUTES from './constants/routes';
+import DDPPriceView from './pages/DDPPrice';
+import './style.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route path={`${ROUTES.HOME_ROUTE}${ROUTES.STEPPER_ROUTE}`} component={AppStepperLinear} />
+      <Route path={`${ROUTES.HOME_ROUTE}${ROUTES.DDP_CALCULATION_RESULT}`} component={DDPPriceView} />
+      <Redirect to={`${ROUTES.HOME_ROUTE}${ROUTES.STEPPER_ROUTE}`} />
+    </Switch>
   );
 }
 
