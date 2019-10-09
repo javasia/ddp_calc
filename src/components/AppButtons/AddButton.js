@@ -1,8 +1,8 @@
 import Fab from '@material-ui/core/Fab';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { withStylesPropTypes } from 'react-with-styles';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 const useStyles = makeStyles(theme => ({
@@ -38,8 +38,8 @@ AddButton.defaultProps = {
 };
 
 AddButton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
   style: withStylesPropTypes.styles,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default AddButton;

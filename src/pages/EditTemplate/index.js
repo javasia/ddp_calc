@@ -1,3 +1,3 @@
-import EditTemplateView from './view/EditTemplateView';
+import EditTemplateView from './EditTemplateView';
 
 export default EditTemplateView;

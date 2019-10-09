@@ -1,11 +1,13 @@
 {
   "name": "pdffiller_final_project",
+  "homepage": "https://javasia.github.io/ddp_calc/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.4.0",
     "@material-ui/icons": "^4.2.1",
     "clsx": "^1.0.4",
+    "gh-pages": "^2.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -15,8 +17,10 @@
     "react-with-styles": "^3.2.3",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "xlsx": "^0.15.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -29,6 +33,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-react-hooks": "^2.0.1",
     "ncp": "^2.0.0",
     "prettier": "^1.14.3"
   },
@@ -38,7 +43,9 @@
     "test": "echo \"there're no test implemented\"",
     "eject": "react-scripts eject",
     "lint": "eslint ./src && echo \"eslint: ok!\"",
-    "lint-autofix": "eslint ./src --fix "
+    "lint-autofix": "eslint ./src --fix ",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app",
